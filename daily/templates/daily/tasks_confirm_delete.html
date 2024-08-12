@@ -1,0 +1,12 @@
+{% extends 'daily/main.html' %}
+{% block content %}
+
+<a href="{% url 'tasks' %}">Cancel</a>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Are You Sure U Want To Delete This task? "{{task}}"</p>
+    <input type="submit" value="Delete">
+</form>
+
+{% endblock content %}

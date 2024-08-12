@@ -1,0 +1,14 @@
+{% extends 'daily/main.html' %}
+{% block content %}
+
+
+<h3>Register Here</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register">
+</form>
+
+<p>Already Have An Account? <a href="{% url 'login' %}">Login</a></p>
+{% endblock content %}

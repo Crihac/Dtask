@@ -1,0 +1,44 @@
+{% extends 'daily/main.html' %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+
+{% endif %}
+<br>
+<br>
+<a href="{% url 'tasks' %}">Main Page</a>
+<br>
+<br>
+<a href="{% url 'task-create' %}">Add Tasks</a>
+<br>
+<form action="" method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="search">
+</form>
+<br>
+
+
+<table>
+    <th>
+        <tr>Item</tr>
+        <tr></tr>
+    </th>
+
+    {% for tas in task %}
+    <tr>
+        <td>{{tas.title}}</td>
+        <td><a href="{% url 'task-detail' tas.id  %}">View</a></td>
+        <td><a href="{% url 'task-update' tas.id  %}">Edit</a></td>
+        <td><a href="{% url 'task-delete' tas.id  %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>
+        No Items in the list
+    </h3>
+    {% endfor %}
+</table>
+
+{% endblock content %}
